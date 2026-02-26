@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ghoomakad — Login / Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--dark:#1A1208;--gold:#C8972A;--gold-light:#E8B84B;--accent:#2D5A4F;--cream:#FDFAF4;--sand:#F5EFE0;--text:#4A3728;--tl:#8A7060;--err:#E53E3E}
+    body{font-family:'DM Sans',sans-serif;background:var(--dark);min-height:100vh;display:flex}
+
+    /* LEFT PANEL */
+    .lp{width:50%;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:40px}
+    .lbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1564507592333-c60657eea523?w=900&q=80') center/cover;animation:bgS 12s ease-in-out infinite alternate}
+    @keyframes bgS{from{transform:scale(1)}to{transform:scale(1.06)}}
+    .lbg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(26,18,8,.5),rgba(26,18,8,.88))}
+    .lt,.lb{position:relative;z-index:2}
+    .logo{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:#fff;text-decoration:none}
+    .logo span{color:var(--gold-light)}
+    .ltag{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px;display:block}
+    .ltitle{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);color:#fff;line-height:1.15;margin-bottom:18px}
+    .ltitle em{font-style:italic;color:var(--gold-light)}
+    .lsub{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:24px;max-width:340px}
+    .pills{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);padding:6px 14px;border-radius:50px;font-size:.75rem}
+
+    /* RIGHT PANEL */
+    .rp{width:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;padding:40px;overflow-y:auto}
+    .ab{width:100%;max-width:400px}
+    .back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--tl);text-decoration:none;margin-bottom:22px}
+    .back:hover{color:var(--gold)}
+
+    /* TABS */
+    .tabs{display:flex;background:var(--sand);border-radius:12px;padding:4px;margin-bottom:28px;position:relative}
+    .slider{position:absolute;top:4px;left:4px;width:calc(50% - 4px);height:calc(100% - 8px);background:#fff;border-radius:9px;box-shadow:0 2px 8px rgba(0,0,0,.1);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+    .slider.right{transform:translateX(100%)}
+    .tab{flex:1;padding:11px;text-align:center;font-size:.9rem;font-weight:600;color:var(--tl);cursor:pointer;position:relative;z-index:1;border:none;background:none;font-family:'DM Sans',sans-serif;border-radius:9px;transition:color .3s}
+    .tab.active{color:var(--dark)}
+
+    /* FORM */
+    .ah{margin-bottom:24px}
+    .ah h2{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--dark);margin-bottom:5px}
+    .ah p{font-size:.85rem;color:var(--tl)}
+    .fg{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+    .fg label{font-size:.72rem;font-weight:700;letter-spacing:.5px;color:var(--text);text-transform:uppercase}
+    .fw{position:relative}
+    .fi{font-size:.95rem;position:absolute;left:13px;top:50%;transform:translateY(-50%);pointer-events:none}
+    .fg input{width:100%;padding:12px 16px 12px 40px;border:1.5px solid #E8DDD0;border-radius:11px;font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--dark);background:#fff;outline:none;transition:all .3s}
+    .fg input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,151,42,.12)}
+    .fg input::placeholder{color:#B8A898}
+    .tpbtn{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:.95rem;background:none;border:none;color:var(--tl)}
+    .fr{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    /* STRENGTH */
+    .sbar{display:flex;gap:4px;margin-top:5px}
+    .ss{flex:1;height:3px;background:#E8DDD0;border-radius:2px;transition:background .4s}
+    .slbl{font-size:.68rem;color:var(--tl);margin-top:3px}
+
+    /* CHECKBOX */
+    .cr{display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:var(--tl);margin-bottom:4px}
+    .cr input[type=checkbox]{width:17px;height:17px;accent-color:var(--gold);cursor:pointer;margin-top:1px;flex-shrink:0}
+    .cr a{color:var(--gold);font-weight:600;text-decoration:none}
+    .flink{text-align:right;font-size:.78rem;margin-bottom:6px}
+    .flink a{color:var(--gold);font-weight:600;text-decoration:none;cursor:pointer}
+
+    /* MESSAGES */
+    .fmsg{padding:10px 14px;border-radius:10px;font-size:.83rem;font-weight:500;display:none;align-items:center;gap:8px;margin-bottom:10px}
+    .fmsg.emsg{background:rgba(229,62,62,.08);border:1px solid rgba(229,62,62,.25);color:var(--err)}
+    .fmsg.smsg{background:rgba(45,90,79,.08);border:1px solid rgba(45,90,79,.25);color:var(--accent)}
+    .fmsg.show{display:flex}
+
+    /* BUTTON */
+    .abtn{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--dark);border:none;border-radius:12px;padding:14px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:6px}
+    .abtn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(200,151,42,.38)}
+    .abtn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+    .odd{display:flex;align-items:center;gap:10px;font-size:.73rem;color:var(--tl);margin:14px 0}
+    .odd::before,.odd::after{content:'';flex:1;height:1px;background:#E8DDD0}
+    .soc{display:flex;gap:10px}
+    .sbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px;border:1.5px solid #E8DDD0;border-radius:11px;background:#fff;font-family:'DM Sans',sans-serif;font-size:.83rem;font-weight:600;color:var(--text);cursor:pointer;transition:all .3s}
+    .sbtn:hover{border-color:var(--gold);background:rgba(200,151,42,.04)}
+
+    /* SUCCESS */
+    .ss-screen{display:none;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:20px 0}
+    .ss-screen.show{display:flex}
+    .sanim{width:72px;height:72px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;animation:popIn .5s ease}
+    @keyframes popIn{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+    .ss-screen h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dark)}
+    .ss-screen p{font-size:.85rem;color:var(--tl);line-height:1.6}
+
+    #forgotSec{display:none}
+    @media(max-width:768px){body{flex-direction:column}.lp{width:100%;min-height:220px}.rp{width:100%;padding:28px 20px}.fr{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<!-- LEFT -->
+<div class="lp">
+  <div class="lbg"></div>
+  <div class="lt"><a href="index.html" class="logo">Ghoomakad<span>.</span></a></div>
+  <div class="lb">
+    <span class="ltag">घुमक्कड़ का साथी</span>
+    <h2 class="ltitle">Har Raah Pe<br><em>Saath Hain Hum</em></h2>
+    <p class="lsub">1 lakh+ ghoomakad members ke saath join karo aur pao exclusive deals aur hidden destinations.</p>
+    <div class="pills">
+      <span class="pill">🏔️ Manali</span><span class="pill">🌊 Goa</span>
+      <span class="pill">🌿 Kerala</span><span class="pill">🏯 Jaipur</span>
+      <span class="pill">❄️ Ladakh</span><span class="pill">🙏 Varanasi</span>
+    </div>
+  </div>
+</div>
+
+<!-- RIGHT -->
+<div class="rp">
+  <div class="ab">
+    <a href="index.html" class="back">← Wapas Jaao</a>
+
+    <div class="tabs" id="authTabs">
+      <div class="slider" id="tabSlider"></div>
+      <button class="tab active" id="loginTab" onclick="switchTab('login')">Login</button>
+      <button class="tab" id="regTab" onclick="switchTab('register')">Register</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="loginSec">
+      <div class="ah"><h2>Swagat Hai! 🙏</h2><p>Apne account mein login karo.</p></div>
+      <form onsubmit="doLogin(event)">
+        <div class="fmsg" id="loginMsg"></div>
+        <div class="fg"><label>Email ya Mobile</label>
+          <div class="fw"><span class="fi">📧</span><input type="text" id="lEmail" placeholder="email@gmail.com ya 9876543210"></div>
+        </div>
+        <div class="fg"><label>Password</label>
+          <div class="fw"><span class="fi">🔒</span><input type="password" id="lPass" placeholder="Apna password daalo">
+            <button type="button" class="tpbtn" onclick="toggleP('lPass',this)">👁️</button>
+          </div>
+        </div>
+        <div class="flink"><a onclick="showForgot()">Password bhool gaye?</a></div>
+        <button type="submit" class="abtn" id="loginBtn">🚀 Login Karo</button>
+        <div class="odd">ya login karo</div>
+        <div class="soc">
+          <button type="button" class="sbtn" onclick="googleLogin()"><span>🔵</span> Google</button>
+          <button type="button" class="sbtn" onclick="fbLogin()"><span>📘</span> Facebook</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="regSec" style="display:none">
+      <div class="ah"><h2>Bano Ghoomakad! 🎒</h2><p>Free mein join karo — sirf 1 minute!</p></div>
+      <form onsubmit="doRegister(event)">
+        <div class="fmsg" id="regMsg"></div>
+        <div class="fr">
+          <div class="fg"><label>Pehla Naam</label>
+            <div class="fw"><span class="fi">👤</span><input type="text" id="rFirst" placeholder="Rahul"></div>
+          </div>
+          <div class="fg"><label>Aakhri Naam</label>
+            <div class="fw"><span class="fi">👤</span><input type="text" id="rLast" placeholder="Sharma"></div>
+          </div>
+        </div>
+        <div class="fg"><label>Email</label>
+          <div class="fw"><span class="fi">📧</span><input type="email" id="rEmail" placeholder="rahul@gmail.com"></div>
+        </div>
+        <div class="fg"><label>Mobile Number</label>
+          <div class="fw"><span class="fi">📱</span><input type="tel" id="rPhone" placeholder="9876543210"></div>
+        </div>
+        <div class="fg"><label>Password Banao</label>
+          <div class="fw"><span class="fi">🔒</span><input type="password" id="rPass" placeholder="Kam se kam 6 characters" oninput="chkStr(this.value)">
+            <button type="button" class="tpbtn" onclick="toggleP('rPass',this)">👁️</button>
+          </div>
+          <div class="sbar"><div class="ss" id="s1"></div><div class="ss" id="s2"></div><div class="ss" id="s3"></div><div class="ss" id="s4"></div></div>
+          <div class="slbl" id="slbl">Password strength</div>
+        </div>
+        <div class="fg"><label>Password Confirm</label>
+          <div class="fw"><span class="fi">🔒</span><input type="password" id="rPass2" placeholder="Dobara daalo">
+            <button type="button" class="tpbtn" onclick="toggleP('rPass2',this)">👁️</button>
+          </div>
+        </div>
+        <div class="cr"><input type="checkbox" id="terms"><label for="terms">Main <a href="#">Terms & Conditions</a> se sehmat hoon</label></div>
+        <button type="submit" class="abtn" id="regBtn">🎒 Join Ghoomakad</button>
+        <div class="odd">ya register karo</div>
+        <div class="soc">
+          <button type="button" class="sbtn" onclick="googleLogin()"><span>🔵</span> Google</button>
+          <button type="button" class="sbtn" onclick="fbLogin()"><span>📘</span> Facebook</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- FORGOT PASSWORD -->
+    <div id="forgotSec">
+      <div class="ah"><h2>Password Reset 🔑</h2><p>Email daalo, reset link bhej denge.</p></div>
+      <form onsubmit="doForgot(event)">
+        <div class="fg"><label>Email</label>
+          <div class="fw"><span class="fi">📧</span><input type="email" id="fEmail" placeholder="aapka@email.com"></div>
+        </div>
+        <button type="submit" class="abtn">📨 Reset Link Bhejo</button>
+        <button type="button" onclick="cancelForgot()" style="background:none;border:none;color:var(--tl);font-size:.82rem;cursor:pointer;width:100%;margin-top:10px;font-family:'DM Sans',sans-serif">← Login pe Wapas</button>
+      </form>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="ss-screen" id="successScreen">
+      <div class="sanim">🎉</div>
+      <h2 id="ssTitle">Ho Gaya!</h2>
+      <p id="ssMsg">Ghoomakad family mein swagat!</p>
+      <a href="index.html" class="abtn" style="text-decoration:none">🌍 Destinations Dekhein</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ── Storage helpers ──
+  const getUsers = () => { try { return JSON.parse(localStorage.getItem('ghoomakad_users')||'[]'); } catch { return []; } };
+  const saveUsers = u => localStorage.setItem('ghoomakad_users', JSON.stringify(u));
+  const getMe = () => { try { return JSON.parse(localStorage.getItem('ghoomakad_me')||'null'); } catch { return null; } };
+  const setMe = u => localStorage.setItem('ghoomakad_me', JSON.stringify(u));
+
+  // Already logged in? Go home
+  if(getMe()) location.href = 'index.html';
+
+  // Hash check
+  if(location.hash === '#register') switchTab('register');
+
+  // ── Tabs ──
+  function switchTab(t) {
+    const sl = document.getElementById('tabSlider');
+    document.getElementById('loginTab').classList.toggle('active', t==='login');
+    document.getElementById('regTab').classList.toggle('active', t==='register');
+    sl.classList.toggle('right', t==='register');
+    document.getElementById('loginSec').style.display = t==='login' ? 'block' : 'none';
+    document.getElementById('regSec').style.display   = t==='register' ? 'block' : 'none';
+  }
+
+  // ── Toggle password ──
+  function toggleP(id, btn) {
+    const i = document.getElementById(id);
+    i.type = i.type==='password' ? 'text' : 'password';
+    btn.textContent = i.type==='password' ? '👁️' : '🙈';
+  }
+
+  // ── Password strength ──
+  function chkStr(v) {
+    const c=['#E53E3E','#E8A838','#C8972A','#2D5A4F'];
+    const l=['Kamzor 😬','Theek 😐','Accha 👍','Strong 💪'];
+    let s=0;
+    if(v.length>=6) s++;
+    if(/[A-Z]/.test(v)) s++;
+    if(/[0-9]/.test(v)) s++;
+    if(/[^A-Za-z0-9]/.test(v)) s++;
+    ['s1','s2','s3','s4'].forEach((id,i)=>document.getElementById(id).style.background = i<s ? c[Math.min(s-1,3)] : '#E8DDD0');
+    const lbl=document.getElementById('slbl');
+    lbl.textContent = v ? (l[Math.min(s-1,3)]||'Kamzor 😬') : 'Password strength';
+    lbl.style.color = v ? c[Math.min(s-1,3)] : '#8A7060';
+  }
+
+  // ── Message ──
+  function msg(id, txt, type) {
+    const el=document.getElementById(id);
+    el.className='fmsg '+(type==='err'?'emsg':'smsg')+' show';
+    el.innerHTML=(type==='err'?'❌ ':'✅ ')+txt;
+  }
+
+  const delay = ms => new Promise(r=>setTimeout(r,ms));
+
+  // ── LOGIN ──
+  async function doLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('lEmail').value.trim().toLowerCase();
+    const pass  = document.getElementById('lPass').value;
+    const btn   = document.getElementById('loginBtn');
+    if(!email||!pass) { msg('loginMsg','Email aur password dono daalo!','err'); return; }
+    btn.disabled=true; btn.textContent='⏳ Login ho raha hai...';
+    await delay(800);
+    const user = getUsers().find(u=>(u.email===email||u.phone===email)&&u.password===pass);
+    btn.disabled=false; btn.textContent='🚀 Login Karo';
+    if(!user) { msg('loginMsg','Email/Password galat hai. Pehle register karo!','err'); return; }
+    setMe({firstName:user.firstName, lastName:user.lastName, name:user.firstName+' '+user.lastName, email:user.email, phone:user.phone});
+    success('Login Ho Gaya! 🎉', `Wapas swagat hai ${user.firstName}!`);
+  }
+
+  // ── REGISTER ──
+  async function doRegister(e) {
+    e.preventDefault();
+    const first = document.getElementById('rFirst').value.trim();
+    const last  = document.getElementById('rLast').value.trim();
+    const email = document.getElementById('rEmail').value.trim().toLowerCase();
+    const phone = document.getElementById('rPhone').value.trim().replace(/\D/g,'').slice(-10);
+    const pass  = document.getElementById('rPass').value;
+    const pass2 = document.getElementById('rPass2').value;
+    const terms = document.getElementById('terms').checked;
+
+    if(!first||!last||!email||!phone||!pass) { msg('regMsg','Sab fields bharna zaroori hai!','err'); return; }
+    if(pass!==pass2)  { msg('regMsg','Dono passwords alag hain!','err'); return; }
+    if(pass.length<6) { msg('regMsg','Password kam se kam 6 characters ka hona chahiye!','err'); return; }
+    if(!terms)        { msg('regMsg','Terms & Conditions accept karo!','err'); return; }
+
+    const users = getUsers();
+    if(users.find(u=>u.email===email)) { msg('regMsg','Yeh email already registered hai. Login karo!','err'); return; }
+
+    const btn = document.getElementById('regBtn');
+    btn.disabled=true; btn.textContent='⏳ Account ban raha hai...';
+    await delay(1000);
+
+    const newUser = {firstName:first, lastName:last, email, phone, password:pass, joined:new Date().toISOString()};
+    users.push(newUser);
+    saveUsers(users);
+    setMe({firstName:first, lastName:last, name:first+' '+last, email, phone});
+
+    btn.disabled=false;
+    document.getElementById('authTabs').style.display='none';
+    document.getElementById('regSec').style.display='none';
+    success('Account Ban Gaya! 🎉', `${first}, Ghoomakad family mein swagat hai! Ab apni trip book karo.`);
+  }
+
+  // ── FORGOT ──
+  function showForgot() {
+    document.getElementById('authTabs').style.display='none';
+    document.getElementById('loginSec').style.display='none';
+    document.getElementById('forgotSec').style.display='block';
+  }
+  function cancelForgot() {
+    document.getElementById('authTabs').style.display='flex';
+    document.getElementById('loginSec').style.display='block';
+    document.getElementById('forgotSec').style.display='none';
+  }
+  async function doForgot(e) {
+    e.preventDefault();
+    const email = document.getElementById('fEmail').value.toLowerCase();
+    const btn = e.target.querySelector('.abtn');
+    btn.disabled=true; btn.textContent='⏳ Dhundh raha hoon...';
+    await delay(1200);
+    const user = getUsers().find(u=>u.email===email);
+    btn.disabled=false; btn.textContent='📨 Reset Link Bhejo';
+    if(!user) { alert('❌ Yeh email registered nahi hai! Pehle register karo.'); return; }
+    document.getElementById('authTabs').style.display='none';
+    document.getElementById('forgotSec').style.display='none';
+    success('Link Bhej Diya! 📨','Aapki email pe password reset link bheja gaya. Inbox check karo!');
+  }
+
+  // ── SOCIAL (demo) ──
+  async function googleLogin() {
+    const name = prompt('Google Login Demo\nApna naam daalo:') || 'Google User';
+    const email = prompt('Email daalo:') || 'user@gmail.com';
+    if(!name||!email) return;
+    const parts = name.trim().split(' ');
+    setMe({firstName:parts[0], lastName:parts.slice(1).join(' ')||'', name, email, phone:'N/A'});
+    document.getElementById('authTabs').style.display='none';
+    document.getElementById('loginSec').style.display='none';
+    document.getElementById('regSec').style.display='none';
+    success('Google Se Login! 🎉', `${parts[0]}, Ghoomakad mein swagat hai!`);
+  }
+  async function fbLogin() {
+    const name = prompt('Facebook Login Demo\nApna naam daalo:') || 'FB User';
+    const email = prompt('Email daalo:') || 'user@fb.com';
+    if(!name||!email) return;
+    const parts = name.trim().split(' ');
+    setMe({firstName:parts[0], lastName:parts.slice(1).join(' ')||'', name, email, phone:'N/A'});
+    document.getElementById('authTabs').style.display='none';
+    document.getElementById('loginSec').style.display='none';
+    document.getElementById('regSec').style.display='none';
+    success('Facebook Se Login! 🎉', `${parts[0]}, Ghoomakad mein swagat hai!`);
+  }
+
+  // ── SUCCESS — redirect to pending dest or home ──
+  function success(title, msg_) {
+    document.getElementById('ssTitle').textContent = title;
+    document.getElementById('ssMsg').textContent = msg_;
+    document.getElementById('successScreen').classList.add('show');
+    setTimeout(() => {
+      const pendingDest = localStorage.getItem('ghoomakad_pending_dest');
+      if (pendingDest) {
+        localStorage.removeItem('ghoomakad_pending_dest');
+        location.href = 'payment.html?dest=' + pendingDest;
+      } else {
+        location.href = 'index.html';
+      }
+    }, 1500);
+  }
+</script>
+</body>
+</html>

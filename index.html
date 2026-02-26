@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ghoomakad — Discover the World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">Ghoomakad</div>
+    <ul class="nav-links">
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#experiences">Experiences</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-auth">
+      <a href="login.html" class="nav-login">Login</a>
+      <a href="login.html#register" class="nav-cta">Register</a>
+    </div>
+    <button class="hamburger" id="hamburger">&#9776;</button>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg">
+      <div class="hero-layer layer1"></div>
+      <div class="hero-layer layer2"></div>
+      <div class="hero-particles" id="particles"></div>
+    </div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">घुमक्कड़ — असली Musafir का साथी</span>
+      <h1 class="hero-title">Chalo Niklo<br><em>Ghoomne!</em></h1>
+      <p class="hero-sub">Bharat ke sabse khoobsurat destinations ka anubhav karein. Hum sirf trips plan nahi karte — yaadein banate hain.</p>
+      <div class="hero-actions">
+        <a href="#destinations" class="btn-primary">Destinations Dekhein</a>
+        <a href="login.html" class="btn-ghost">Login / Register →</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><strong>500+</strong><span>Destinations</span></div>
+      <div class="stat"><strong>1L+</strong><span>Ghoomakad</span></div>
+      <div class="stat"><strong>4.9★</strong><span>Rating</span></div>
+    </div>
+  </header>
+
+  <!-- SEARCH BAR -->
+  <section class="search-section">
+    <div class="search-bar">
+      <div class="search-field">
+        <label>Where</label>
+        <input type="text" placeholder="Destination...">
+      </div>
+      <div class="search-divider"></div>
+      <div class="search-field">
+        <label>When</label>
+        <input type="text" placeholder="Travel dates">
+      </div>
+      <div class="search-divider"></div>
+      <div class="search-field">
+        <label>Who</label>
+        <input type="text" placeholder="Travelers">
+      </div>
+      <button class="search-btn">Search</button>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS -->
+  <section class="section destinations" id="destinations">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Behtar Safar</span>
+        <h2 class="section-title">Khaas <em>Destinations</em></h2>
+        <p class="section-sub">Bharat ki khubsurati — pahaadon se samundar tak, har jagah ek kahani hai.</p>
+      </div>
+      <div class="dest-grid">
+        <div class="dest-card dest-large" style="--img:url('https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80'); cursor:pointer" onclick="bookDest('AGR')">
+          <div class="dest-overlay"></div>
+          <div class="dest-info">
+            <span class="dest-tag">Uttar Pradesh</span>
+            <h3>Taj Mahal, Agra</h3>
+            <p>From &#8377;8,999 / person</p>
+            <span class="dest-book-btn">Book Now →</span>
+          </div>
+        </div>
+        <div class="dest-card" style="--img:url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80'); cursor:pointer" onclick="bookDest('ALY')">
+          <div class="dest-overlay"></div>
+          <div class="dest-info">
+            <span class="dest-tag">Kerala</span>
+            <h3>Alleppey Backwaters</h3>
+            <p>From &#8377;6,499 / person</p>
+            <span class="dest-book-btn">Book Now →</span>
+          </div>
+        </div>
+        <div class="dest-card" style="--img:url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&q=80'); cursor:pointer" onclick="bookDest('GOA')">
+          <div class="dest-overlay"></div>
+          <div class="dest-info">
+            <span class="dest-tag">Goa</span>
+            <h3>Goa Beaches</h3>
+            <p>From &#8377;4,999 / person</p>
+            <span class="dest-book-btn">Book Now →</span>
+          </div>
+        </div>
+        <div class="dest-card" style="--img:url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80'); cursor:pointer" onclick="bookDest('MNL')">
+          <div class="dest-overlay"></div>
+          <div class="dest-info">
+            <span class="dest-tag">Himachal Pradesh</span>
+            <h3>Manali & Spiti Valley</h3>
+            <p>From &#8377;7,299 / person</p>
+            <span class="dest-book-btn">Book Now →</span>
+          </div>
+        </div>
+        <div class="dest-card" style="--img:url('https://images.unsplash.com/photo-1477587458883-47145ed94245?w=600&q=80'); cursor:pointer" onclick="bookDest('JPR')">
+          <div class="dest-overlay"></div>
+          <div class="dest-info">
+            <span class="dest-tag">Rajasthan</span>
+            <h3>Jaipur — Pink City</h3>
+            <p>From &#8377;5,499 / person</p>
+            <span class="dest-book-btn">Book Now →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCES -->
+  <section class="section experiences" id="experiences">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Kya Milega Aapko</span>
+        <h2 class="section-title">Hamare <em>Experiences</em></h2>
+      </div>
+      <div class="exp-grid">
+        <div class="exp-card">
+          <div class="exp-icon">🏔️</div>
+          <h3>Pahad Ki Raahein</h3>
+          <p>Manali, Spiti, Ladakh — har pahad ki raah pe Ghoomakad saath hai.</p>
+          <a href="#contact" class="exp-link">Explore →</a>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">🍽️</div>
+          <h3>Zaika-e-Hindustan</h3>
+          <p>Dal Baati se Dosa tak — India ka asli swaad chakho hamare food tours mein.</p>
+          <a href="#contact" class="exp-link">Explore →</a>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">🏛️</div>
+          <h3>Sanskriti Ka Rang</h3>
+          <p>Holi, Diwali, Pushkar Mela — Indian festivals ka asli mazaa hamare saath lo.</p>
+          <a href="#contact" class="exp-link">Explore →</a>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">🛥️</div>
+          <h3>Shahi Safar</h3>
+          <p>Palace hotels, private trains, aur royal Rajasthan — Maharaja jaisa safar.</p>
+          <a href="#contact" class="exp-link">Explore →</a>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">🌿</div>
+          <h3>Prakriti Ki Goad</h3>
+          <p>Rishikesh yoga, Coorg jungles, Kerala Ayurveda — apni rooh ko sukoon do.</p>
+          <a href="#contact" class="exp-link">Explore →</a>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">👨‍👩‍👧</div>
+          <h3>Parivar Ka Safar</h3>
+          <p>Bacchon se budhon tak — Ghoomakad ka family package sabke liye khaas hai.</p>
+          <a href="#contact" class="exp-link">Explore →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span>Taj Mahal &nbsp;✦&nbsp; Goa &nbsp;✦&nbsp; Kerala &nbsp;✦&nbsp; Manali &nbsp;✦&nbsp; Jaipur &nbsp;✦&nbsp; Varanasi &nbsp;✦&nbsp; Andaman &nbsp;✦&nbsp; Leh Ladakh &nbsp;✦&nbsp; Udaipur &nbsp;✦&nbsp; Rishikesh &nbsp;✦&nbsp;</span>
+      <span>Taj Mahal &nbsp;✦&nbsp; Goa &nbsp;✦&nbsp; Kerala &nbsp;✦&nbsp; Manali &nbsp;✦&nbsp; Jaipur &nbsp;✦&nbsp; Varanasi &nbsp;✦&nbsp; Andaman &nbsp;✦&nbsp; Leh Ladakh &nbsp;✦&nbsp; Udaipur &nbsp;✦&nbsp; Rishikesh &nbsp;✦&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="section gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Moments</span>
+        <h2 class="section-title">Ghoomakad <em>Ke Safar</em></h2>
+      </div>
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&q=80" alt="Travel" class="g1">
+        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=500&q=80" alt="Mountains" class="g2">
+        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&q=80" alt="City" class="g3">
+        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=500&q=80" alt="Beach" class="g4">
+        <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500&q=80" alt="Hiking" class="g5">
+        <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=500&q=80" alt="Boat" class="g6">
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Reviews</span>
+        <h2 class="section-title">Ghoomakad <em>Ki Baat</em></h2>
+        <p class="section-sub" style="margin-top:12px">Hamare ghoomakads ki asli baatein — dil se!</p>
+      </div>
+
+      <!-- Review cards grid -->
+      <div class="testi-grid" id="testiGrid">
+        <!-- Default 3 reviews -->
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Kerala backwaters mein honeymoon sach mein sapna tha! Ghoomakad ne har cheez itni achhi plan ki — hum kabhi nahi bhoolenge."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">SL</div>
+            <div><strong>Sarah & Liam</strong><span>Kerala Honeymoon</span></div>
+          </div>
+        </div>
+        <div class="testi-card featured">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Maine puri duniya ghumi hai, lekin Leh-Ladakh ki road trip ne dil jeet liya. Ghoomakad ka planning top class tha — bilkul best!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">MK</div>
+            <div><strong>Arjun Mehta</strong><span>Leh Ladakh Road Trip</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Rajasthan family trip amazing rahi! Bacche aaj bhi Jaipur ke kile aur Jaisalmer ke reth ke taabe ki baat karte hain."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">TF</div>
+            <div><strong>Sharma Parivar</strong><span>Rajasthan Family Tour</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Write Review Button -->
+      <div style="text-align:center; margin-top:40px" id="reviewBtnWrap">
+        <button onclick="openReviewModal()" id="writeReviewBtn" style="background:linear-gradient(135deg,#C8972A,#E8B84B);color:#1A1208;border:none;padding:14px 36px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .3s;box-shadow:0 6px 20px rgba(200,151,42,.35)">
+          ✍️ Apna Review Do
+        </button>
+        <p id="loginHintReview" style="margin-top:12px;font-size:.82rem;color:#8A7060;display:none">
+          👆 <a href="login.html" style="color:#C8972A;font-weight:600">Login karo</a> review dene ke liye
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW MODAL -->
+  <div id="reviewModal" style="display:none;position:fixed;inset:0;background:rgba(26,18,8,.82);backdrop-filter:blur(10px);z-index:999;align-items:center;justify-content:center;padding:20px">
+    <div style="background:#fff;border-radius:22px;max-width:500px;width:100%;padding:36px;box-shadow:0 40px 80px rgba(0,0,0,.25);animation:popIn .35s ease;position:relative">
+      <button onclick="closeReviewModal()" style="position:absolute;top:16px;right:18px;background:none;border:none;font-size:1.3rem;cursor:pointer;color:#8A7060">✕</button>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:#1A1208;margin-bottom:6px">Apna Anubhav Batao ✍️</h3>
+      <p style="font-size:.83rem;color:#8A7060;margin-bottom:22px">Aapka review doosre ghoomakads ki madad karega!</p>
+
+      <!-- Star Rating -->
+      <div style="margin-bottom:18px">
+        <div style="font-size:.72rem;font-weight:700;letter-spacing:.5px;color:#4A3728;text-transform:uppercase;margin-bottom:8px">Rating</div>
+        <div id="starRow" style="display:flex;gap:6px;font-size:2rem;cursor:pointer">
+          <span class="rstar" data-v="1" onclick="setRating(1)">☆</span>
+          <span class="rstar" data-v="2" onclick="setRating(2)">☆</span>
+          <span class="rstar" data-v="3" onclick="setRating(3)">☆</span>
+          <span class="rstar" data-v="4" onclick="setRating(4)">☆</span>
+          <span class="rstar" data-v="5" onclick="setRating(5)">☆</span>
+        </div>
+      </div>
+
+      <!-- Trip -->
+      <div style="margin-bottom:14px">
+        <label style="font-size:.72rem;font-weight:700;letter-spacing:.5px;color:#4A3728;text-transform:uppercase;display:block;margin-bottom:6px">Destination</label>
+        <select id="rvDest" style="width:100%;padding:11px 13px;border:1.5px solid #EDE4D3;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:#1A1208;outline:none;background:#fff">
+          <option>🕌 Taj Mahal, Agra</option>
+          <option>🌿 Alleppey Backwaters, Kerala</option>
+          <option>🏖️ Goa Beaches</option>
+          <option>🏔️ Manali & Spiti</option>
+          <option>🏯 Jaipur Pink City</option>
+          <option>❄️ Leh Ladakh</option>
+          <option>🙏 Varanasi</option>
+          <option>🌊 Andaman Islands</option>
+        </select>
+      </div>
+
+      <!-- Review Text -->
+      <div style="margin-bottom:20px">
+        <label style="font-size:.72rem;font-weight:700;letter-spacing:.5px;color:#4A3728;text-transform:uppercase;display:block;margin-bottom:6px">Aapka Review</label>
+        <textarea id="rvText" rows="4" placeholder="Apna anubhav likhein — kaise tha safar? 😊" style="width:100%;padding:12px 14px;border:1.5px solid #EDE4D3;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:#1A1208;outline:none;resize:none;transition:border .3s" onfocus="this.style.borderColor='#C8972A'" onblur="this.style.borderColor='#EDE4D3'"></textarea>
+      </div>
+
+      <button onclick="submitReview()" style="width:100%;background:linear-gradient(135deg,#C8972A,#E8B84B);color:#1A1208;border:none;border-radius:12px;padding:14px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .3s">
+        🚀 Review Submit Karo
+      </button>
+    </div>
+  </div>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="cta-content">
+      <h2>Niklo! Duniya Dekhni Hai!</h2>
+      <p>Hamare travel experts se baat karein aur FREE mein custom itinerary paayein.</p>
+      <a href="login.html" class="btn-primary">Abhi Join Karo 🎒</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact-section" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-left">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Baat Karo<br><em>Ghoomakad Se</em></h2>
+        <p>Hamare travel experts aapke liye best itinerary taiyaar karenge. Message karo — 24 ghante mein jawab milega!</p>
+        <div class="contact-info">
+          <div class="info-item">📧 hello@ghoomakad.in</div>
+          <div class="info-item">📞 +91 98765 43210</div>
+          <div class="info-item">📍 Connaught Place, New Delhi</div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Priya" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Sharma" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="priya@gmail.com" required>
+        </div>
+        <div class="form-group">
+          <label>Dream Destination</label>
+          <input type="text" placeholder="Goa, Manali, Kerala...">
+        </div>
+        <div class="form-group">
+          <label>Tell us your dream trip</label>
+          <textarea rows="4" placeholder="Apna dream trip batao..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary full-width">Message Bhejo ✈</button>
+        <div class="form-success" id="formSuccess">🎉 Shukriya! 24 ghante mein aapse contact karenge.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Ghoomakad</div>
+        <p>Ghoomakad — asli musafir ka saathi. 2015 se India ke har kone mein safar karwa rahe hain.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Destinations</h4>
+        <ul>
+          <li><a href="#">Rajasthan</a></li>
+          <li><a href="#">Kerala</a></li>
+          <li><a href="#">Himachal Pradesh</a></li>
+          <li><a href="#">Goa</a></li>
+          <li><a href="#">Uttarakhand</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Experiences</h4>
+        <ul>
+          <li><a href="#">Pahad Trek</a></li>
+          <li><a href="#">Beach Trips</a></li>
+          <li><a href="#">Shahi Safar</a></li>
+          <li><a href="#">Yoga & Wellness</a></li>
+          <li><a href="#">Family Tours</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">Hamare Baare Mein</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="login.html#register">Register</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Ghoomakad. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+        <a href="#">Pinterest</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // ── Book destination ──
+    function bookDest(code) {
+      const me = JSON.parse(localStorage.getItem('ghoomakad_me') || 'null');
+      if (!me) {
+        localStorage.setItem('ghoomakad_pending_dest', code);
+        window.location.href = 'login.html';
+      } else {
+        window.location.href = 'payment.html?dest=' + code;
+      }
+    }
+
+    // ── Nav: show user or login/register ──
+    (function() {
+      const me = JSON.parse(localStorage.getItem('ghoomakad_me') || 'null');
+      const navAuth = document.querySelector('.nav-auth');
+      if (!navAuth) return;
+      if (me) {
+        navAuth.innerHTML = `
+          <span style="font-size:.85rem;color:rgba(255,255,255,.75);font-weight:500">👋 ${me.firstName || me.name}</span>
+          <a href="payment.html" class="nav-cta" style="margin-left:10px">Book Now</a>
+          <button onclick="logout()" style="margin-left:8px;background:none;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.55);padding:8px 16px;border-radius:50px;cursor:pointer;font-size:.8rem;font-family:'DM Sans',sans-serif">Logout</button>
+        `;
+        // Show "Apna Review Do" only to logged-in users
+        const btn = document.getElementById('writeReviewBtn');
+        if (btn) btn.style.display = 'inline-block';
+        const hint = document.getElementById('loginHintReview');
+        if (hint) hint.style.display = 'none';
+      } else {
+        // Not logged in — show login hint on review button
+        const btn = document.getElementById('writeReviewBtn');
+        if (btn) {
+          btn.textContent = '🔐 Login Karo & Review Do';
+          btn.onclick = () => window.location.href = 'login.html';
+        }
+      }
+    })();
+
+    function logout() {
+      localStorage.removeItem('ghoomakad_me');
+      location.reload();
+    }
+
+    // ── Load user reviews from localStorage & show ──
+    function loadReviews() {
+      const reviews = JSON.parse(localStorage.getItem('ghoomakad_reviews') || '[]');
+      const grid = document.getElementById('testiGrid');
+      reviews.forEach(r => {
+        const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+        const initials = r.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+        const card = document.createElement('div');
+        card.className = 'testi-card';
+        card.style.animation = 'fadeSlideUp .5s ease';
+        card.innerHTML = `
+          <div class="testi-stars">${stars}</div>
+          <p>"${r.text}"</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#2D5A4F">${initials}</div>
+            <div><strong>${r.name}</strong><span>${r.dest}</span></div>
+          </div>`;
+        grid.appendChild(card);
+      });
+    }
+    loadReviews();
+
+    // ── Review Modal ──
+    let selectedRating = 0;
+
+    function openReviewModal() {
+      const me = JSON.parse(localStorage.getItem('ghoomakad_me') || 'null');
+      if (!me) { window.location.href = 'login.html'; return; }
+      selectedRating = 0;
+      document.getElementById('rvText').value = '';
+      setRating(0);
+      const modal = document.getElementById('reviewModal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeReviewModal() {
+      document.getElementById('reviewModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function setRating(val) {
+      selectedRating = val;
+      document.querySelectorAll('.rstar').forEach((s, i) => {
+        s.textContent = i < val ? '★' : '☆';
+        s.style.color = i < val ? '#C8972A' : '#8A7060';
+      });
+    }
+
+    function submitReview() {
+      const me = JSON.parse(localStorage.getItem('ghoomakad_me') || 'null');
+      if (!me) return;
+      if (selectedRating === 0) { alert('Pehle rating do! ⭐'); return; }
+      const text = document.getElementById('rvText').value.trim();
+      if (text.length < 10) { alert('Thoda aur likhein — kam se kam 10 characters!'); return; }
+      const dest = document.getElementById('rvDest').value;
+
+      // Save review
+      const reviews = JSON.parse(localStorage.getItem('ghoomakad_reviews') || '[]');
+      const newReview = {
+        name: me.firstName + (me.lastName ? ' ' + me.lastName : ''),
+        dest: dest,
+        rating: selectedRating,
+        text: text,
+        date: new Date().toLocaleDateString('hi-IN')
+      };
+      reviews.push(newReview);
+      localStorage.setItem('ghoomakad_reviews', JSON.stringify(reviews));
+
+      // Add card to grid immediately
+      const stars = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+      const initials = newReview.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+      const card = document.createElement('div');
+      card.className = 'testi-card';
+      card.style.cssText = 'animation:fadeSlideUp .5s ease;border:2px solid #C8972A';
+      card.innerHTML = `
+        <div class="testi-stars">${stars}</div>
+        <p>"${text}"</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#2D5A4F">${initials}</div>
+          <div><strong>${newReview.name}</strong><span>${dest}</span></div>
+        </div>
+        <div style="font-size:.68rem;color:#C8972A;margin-top:8px;font-weight:600">✨ Abhi diya gaya</div>`;
+      document.getElementById('testiGrid').appendChild(card);
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      closeReviewModal();
+      // Show thank you alert
+      setTimeout(() => alert(`Shukriya ${me.firstName}! 🙏 Aapka review live ho gaya!`), 300);
+    }
+
+    // Close modal on backdrop click
+    document.getElementById('reviewModal').addEventListener('click', function(e) {
+      if (e.target === this) closeReviewModal();
+    });
+  </script>
+  <style>
+    .dest-book-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #C8972A, #E8B84B);
+      color: #1A1208;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 7px 18px;
+      border-radius: 50px;
+      letter-spacing: .3px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .dest-card:hover .dest-book-btn {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(200,151,42,.5);
+    }
+    @keyframes fadeSlideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    @keyframes popIn {
+      from { transform: scale(.88); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+    .rstar { transition: transform .15s; user-select: none; }
+    .rstar:hover { transform: scale(1.2); }
+  </style>
+</body>
+</html>
